@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
 
     @IBOutlet weak var tableView: UITableView!
     
+    var movies = [Movie]()
     var shouldRefresh = false
     var isMoreDataLoading = false
     let refreshControl = UIRefreshControl()

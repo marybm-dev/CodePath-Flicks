@@ -14,6 +14,7 @@
 		5E30D3A11DB036C30092AA5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E30D39F1DB036C30092AA5F /* LaunchScreen.storyboard */; };
 		5E30D3A91DB038870092AA5F /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E30D3A81DB038870092AA5F /* AFNetworking.framework */; };
 		5E30D3AB1DB0388B0092AA5F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E30D3AA1DB0388B0092AA5F /* SwiftyJSON.framework */; };
+		5E30D3AD1DB041770092AA5F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3AC1DB041770092AA5F /* Movie.swift */; };
 		C59724E97AABCE08E7BE7F21 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16CC4F927015F320B7BCFF /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		5E30D3A21DB036C30092AA5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E30D3A81DB038870092AA5F /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		5E30D3AA1DB0388B0092AA5F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Flicks-dbewfyyzarrzwkbiecqrpvsvetze/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		5E30D3AC1DB041770092AA5F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			children = (
 				5E30D3961DB036C30092AA5F /* AppDelegate.swift */,
 				5E30D3981DB036C30092AA5F /* MoviesViewController.swift */,
+				5E30D3AC1DB041770092AA5F /* Movie.swift */,
 				5E30D39A1DB036C30092AA5F /* Main.storyboard */,
 				5E30D39D1DB036C30092AA5F /* Assets.xcassets */,
 				5E30D39F1DB036C30092AA5F /* LaunchScreen.storyboard */,
@@ -221,6 +224,7 @@
 			files = (
 				5E30D3991DB036C30092AA5F /* MoviesViewController.swift in Sources */,
 				5E30D3971DB036C30092AA5F /* AppDelegate.swift in Sources */,
+				5E30D3AD1DB041770092AA5F /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
