@@ -55,6 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
                     let movieTitle = movie["title"].string
                     let moviePoster = movie["poster_path"].string
                     let movieBackdrop = movie["backdrop_path"].string
+                    let movieOverview = movie["overview"].string
                     
                     guard let title = movieTitle else {
                         continue
@@ -65,8 +66,11 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
                     guard let backdrop = movieBackdrop else {
                         continue
                     }
+                    guard let overview = movieOverview else {
+                        continue
+                    }
                     
-                    let currMovie = Movie(title: title, backdrop: backdrop, poster: poster)
+                    let currMovie = Movie(title: title, backdrop: backdrop, poster: poster, overview: overview)
                     movies.append(currMovie)
                 }
                 
@@ -89,10 +93,11 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.MovieCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.MovieCell", for: indexPath) as! MovieCell
         
         let movie = movies[indexPath.row]
-        cell.textLabel?.text = "\(movie.title)"
+        cell.titleLabel.text = "\(movie.title)"
+        cell.overviewLabel.text = "\(movie.overview)"
         
         return cell
     }
