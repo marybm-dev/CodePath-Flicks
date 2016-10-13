@@ -52,10 +52,22 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
                 
                 // iterate through each movie to get the properties
                 for movie in moviesArray {
-                    let title = movie["title"].string
-                    if let name = title {
-                        NSLog("\(name)")
+                    let movieTitle = movie["title"].string
+                    let moviePoster = movie["poster_path"].string
+                    let movieBackdrop = movie["backdrop_path"].string
+                    
+                    guard let title = movieTitle else {
+                        continue
                     }
+                    guard let poster = moviePoster else {
+                        continue
+                    }
+                    guard let backdrop = movieBackdrop else {
+                        continue
+                    }
+                    
+                    let currMovie = Movie(title: title, backdrop: backdrop, poster: poster)
+                    movies.append(currMovie)
                 }
                 
                 // update flag
@@ -73,12 +85,14 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.MovieCell", for: indexPath)
-        cell.textLabel?.text = "row \(indexPath.row)"
+        
+        let movie = movies[indexPath.row]
+        cell.textLabel?.text = "\(movie.title)"
         
         return cell
     }
