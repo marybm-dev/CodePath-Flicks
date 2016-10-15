@@ -20,6 +20,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     let refreshControl = UIRefreshControl()
     
     let baseURL = "https://image.tmdb.org/t/p/w500"
+    var endPoint = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     func fetchData(shouldRefresh: Bool, offset: Int) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)&offset=\(offset)")
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)&offset=\(offset)")
         
         let request = URLRequest(url: url!)
         let session = URLSession(
