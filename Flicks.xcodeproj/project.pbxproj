@@ -18,6 +18,7 @@
 		5E30D3AF1DB044960092AA5F /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3AE1DB044960092AA5F /* MovieCell.swift */; };
 		5E30D3B11DB1D01D0092AA5F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3B01DB1D01D0092AA5F /* DetailViewController.swift */; };
 		5E30D3B51DB2B4950092AA5F /* KVNProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E30D3B41DB2B4950092AA5F /* KVNProgress.framework */; };
+		5E30D3B71DB2BED80092AA5F /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3B61DB2BED80092AA5F /* IJReachability.swift */; };
 		C59724E97AABCE08E7BE7F21 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16CC4F927015F320B7BCFF /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		5E30D3B01DB1D01D0092AA5F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5E30D3B21DB2AE520092AA5F /* ARSLineProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARSLineProgress.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Flicks-dbewfyyzarrzwkbiecqrpvsvetze/Build/Products/Debug-iphonesimulator/ARSLineProgress/ARSLineProgress.framework"; sourceTree = "<group>"; };
 		5E30D3B41DB2B4950092AA5F /* KVNProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KVNProgress.framework; path = "Pods/../build/Debug-iphoneos/KVNProgress/KVNProgress.framework"; sourceTree = "<group>"; };
+		5E30D3B61DB2BED80092AA5F /* IJReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJReachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				5E30D3AE1DB044960092AA5F /* MovieCell.swift */,
 				5E30D3AC1DB041770092AA5F /* Movie.swift */,
 				5E30D3B01DB1D01D0092AA5F /* DetailViewController.swift */,
+				5E30D3B61DB2BED80092AA5F /* IJReachability.swift */,
 				5E30D39A1DB036C30092AA5F /* Main.storyboard */,
 				5E30D39D1DB036C30092AA5F /* Assets.xcassets */,
 				5E30D39F1DB036C30092AA5F /* LaunchScreen.storyboard */,
@@ -237,6 +240,7 @@
 				5E30D3991DB036C30092AA5F /* MoviesViewController.swift in Sources */,
 				5E30D3971DB036C30092AA5F /* AppDelegate.swift in Sources */,
 				5E30D3B11DB1D01D0092AA5F /* DetailViewController.swift in Sources */,
+				5E30D3B71DB2BED80092AA5F /* IJReachability.swift in Sources */,
 				5E30D3AF1DB044960092AA5F /* MovieCell.swift in Sources */,
 				5E30D3AD1DB041770092AA5F /* Movie.swift in Sources */,
 			);

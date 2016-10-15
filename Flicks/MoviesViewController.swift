@@ -14,6 +14,7 @@ import KVNProgress
 class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var warningView: UIView!
     
     var movies = [Movie]()
     var shouldRefresh = false
@@ -25,8 +26,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.fetchData(shouldRefresh: false, offset: 0)
+        
+        // init refresh control
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        self.fetchData(shouldRefresh: true, offset: movies.count)
     }
     
     func fetchData(shouldRefresh: Bool, offset: Int) {
