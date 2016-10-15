@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import AFNetworking
 
-class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,6 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
     var shouldRefresh = false
     var isMoreDataLoading = false
     let refreshControl = UIRefreshControl()
+    
+    let baseURL = "https://image.tmdb.org/t/p/w500"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,11 +98,28 @@ class ViewController: UIViewController, UITableViewDataSource, UIScrollViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.MovieCell", for: indexPath) as! MovieCell
         
+        
         let movie = movies[indexPath.row]
+        let posterURL = URL(string: baseURL + movie.poster)
+        
         cell.titleLabel.text = "\(movie.title)"
         cell.overviewLabel.text = "\(movie.overview)"
         
+        if let validURL = posterURL {
+            cell.posterView.setImageWith(validURL)
+        }
+        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        let movie = movies[(indexPath?.row)!]
+        
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.movie = movie
+        detailViewController.baseURL = self.baseURL
     }
 }
 
