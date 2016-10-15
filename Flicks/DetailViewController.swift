@@ -23,12 +23,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set the scroll view to include offscreen view
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         
+        // set the labels
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
         overviewLabel.sizeToFit()
         
+        // set the image
         let posterURL = URL(string: baseURL + movie.poster)
         if let validURL = posterURL {
             posterView.setImageWith(validURL)
