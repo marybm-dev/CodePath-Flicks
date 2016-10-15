@@ -27,6 +27,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // check for internet connection
+        warningView.isHidden = IJReachability.isConnectedToNetwork() ? true : false
+        
+        // get the data
         self.fetchData(shouldRefresh: false, offset: 0)
         
         // init refresh control
