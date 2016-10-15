@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ARSLineProgress.xcscheme</key>
+		<key>KVNProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>03CEDB01DC9FCF232E28721AF9D03890</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D575F63E7B5E9AE55AA57BDE4683647</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4878C70B21CA37D7CB8A476BF986741B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7CCCAFC0748DA13C6B664191AA5674B0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A64A94758E50AF88B9CBB5A52CA5646B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BF7493D8461B38FAFB0814FC48AABCB8</key>
+		<key>9331536B77C6512D06ACBE5E2E6F3255</key>
 		<dict>
 			<key>primary</key>
 			<true/>

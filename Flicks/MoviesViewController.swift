@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import AFNetworking
+import KVNProgress
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
 
@@ -24,7 +25,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.fetchData(shouldRefresh: false, offset: 0)
     }
     
@@ -40,6 +41,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         )
         
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: { (dataOrNil, response, error) in
+            
+            // show activity indicator
+            KVNProgress.show()
             
             self.parseData(response: dataOrNil, shouldRefresh: shouldRefresh)
             
@@ -83,6 +87,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
                 
                 // reload the table view
                 self.tableView.reloadData()
+                
+                // stop activity indicator
+                KVNProgress.dismiss()
                 
                 // if refreshing, stop
                 if shouldRefresh {

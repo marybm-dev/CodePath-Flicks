@@ -17,6 +17,7 @@
 		5E30D3AD1DB041770092AA5F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3AC1DB041770092AA5F /* Movie.swift */; };
 		5E30D3AF1DB044960092AA5F /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3AE1DB044960092AA5F /* MovieCell.swift */; };
 		5E30D3B11DB1D01D0092AA5F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E30D3B01DB1D01D0092AA5F /* DetailViewController.swift */; };
+		5E30D3B51DB2B4950092AA5F /* KVNProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E30D3B41DB2B4950092AA5F /* KVNProgress.framework */; };
 		C59724E97AABCE08E7BE7F21 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16CC4F927015F320B7BCFF /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,8 @@
 		5E30D3AC1DB041770092AA5F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5E30D3AE1DB044960092AA5F /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		5E30D3B01DB1D01D0092AA5F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5E30D3B21DB2AE520092AA5F /* ARSLineProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARSLineProgress.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Flicks-dbewfyyzarrzwkbiecqrpvsvetze/Build/Products/Debug-iphonesimulator/ARSLineProgress/ARSLineProgress.framework"; sourceTree = "<group>"; };
+		5E30D3B41DB2B4950092AA5F /* KVNProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KVNProgress.framework; path = "Pods/../build/Debug-iphoneos/KVNProgress/KVNProgress.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E30D3B51DB2B4950092AA5F /* KVNProgress.framework in Frameworks */,
 				5E30D3AB1DB0388B0092AA5F /* SwiftyJSON.framework in Frameworks */,
 				5E30D3A91DB038870092AA5F /* AFNetworking.framework in Frameworks */,
 				C59724E97AABCE08E7BE7F21 /* Pods_Flicks.framework in Frameworks */,
@@ -98,6 +102,8 @@
 		8A4FE10BF7B9D534D54F4541 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E30D3B41DB2B4950092AA5F /* KVNProgress.framework */,
+				5E30D3B21DB2AE520092AA5F /* ARSLineProgress.framework */,
 				5E30D3AA1DB0388B0092AA5F /* SwiftyJSON.framework */,
 				5E30D3A81DB038870092AA5F /* AFNetworking.framework */,
 				0A16CC4F927015F320B7BCFF /* Pods_Flicks.framework */,
@@ -359,6 +365,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/KVNProgress",
 				);
 				INFOPLIST_FILE = Flicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -376,6 +383,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/KVNProgress",
 				);
 				INFOPLIST_FILE = Flicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
