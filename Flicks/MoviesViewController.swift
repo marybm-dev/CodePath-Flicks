@@ -38,10 +38,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         tableView.insertSubview(refreshControl, at: 0)
     }
     
+    // Mark: Refresh control
     func refreshControlAction(refreshControl: UIRefreshControl) {
         self.fetchData(shouldRefresh: true, offset: movies.count)
     }
     
+    // Mark: App logic
     func fetchData(shouldRefresh: Bool, offset: Int) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)&offset=\(offset)")
@@ -58,6 +60,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
             // show activity indicator
             KVNProgress.show()
             
+            // parse the response
             self.parseData(response: dataOrNil, shouldRefresh: shouldRefresh)
             
         });
@@ -112,6 +115,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         }
     }
 
+    // Mark: TableView delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -133,6 +137,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         return cell
     }
     
+    // Mark: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
@@ -142,5 +147,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         detailViewController.movie = movie
         detailViewController.baseURL = self.baseURL
     }
+
 }
 
