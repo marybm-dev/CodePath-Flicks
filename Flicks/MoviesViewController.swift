@@ -137,6 +137,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         return cell
     }
     
+    // MARK: ScrollView delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if !isMoreDataLoading {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                
+                // ... Code to load more results ...
+                self.fetchData(shouldRefresh: false, offset: movies.count)
+            }
+        }
+    }
+    
     // Mark: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
