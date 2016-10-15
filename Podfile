@@ -8,5 +8,6 @@ target 'Flicks' do
   # Pods for Flicks
   pod 'AFNetworking', '~> 2.6'
   pod 'SwiftyJSON'
+  pod 'ARSLineProgress', '~> 2.0'
 
 end

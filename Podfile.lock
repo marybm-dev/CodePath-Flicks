@@ -20,16 +20,19 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - ARSLineProgress (2.0.0)
   - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6)
+  - ARSLineProgress (~> 2.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  ARSLineProgress: a20f4093d44802184cbc135bcd56259d6f12d002
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: ce57fcdf3953bf715985bd1aab3a223d31272d67
+PODFILE CHECKSUM: 0a9d66509ef06ab585bd4e849ff77dca9e892041
 
 COCOAPODS: 1.0.1
