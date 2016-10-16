@@ -11,8 +11,9 @@ import SwiftyJSON
 import AFNetworking
 import KVNProgress
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var warningView: UIView!
     
@@ -34,6 +35,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         // check for internet connection
         warningView.isHidden = IJReachability.isConnectedToNetwork() ? true : false
         
+        // default view is tableView so remove collectionView
+        //self.view.willRemoveSubview(collectionView)
+        
         // get the data
         self.fetchData(shouldRefresh: false, offset: 0)
         
@@ -54,6 +58,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     // Mark: Segment Control
     func segmentControlAction(segmentControl: UISegmentedControl) {
         NSLog("selected segment: \(segmentControl.selectedSegmentIndex)")
+        
+        var toView = UIView()
+        var fromView = UIView()
+        
+        if segmentControl.selectedSegmentIndex == 0 {
+            fromView = self.collectionView
+            toView = self.tableView
+        }
+        else {
+            fromView = self.tableView
+            toView = self.collectionView
+        }
+        
+        toView.frame = self.view.bounds
+        UIView.transition(from: fromView, to: toView, duration: 0.25, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
     }
     
     // Mark: Refresh control
@@ -121,6 +140,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
                 
                 // reload the table view
                 self.tableView.reloadData()
+                self.collectionView.reloadData()
                 
                 // stop activity indicator
                 KVNProgress.dismiss()
@@ -133,7 +153,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         }
     }
 
-    // Mark: TableView delegate
+    // Mark: TableView data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -141,12 +161,33 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.MovieCell", for: indexPath) as! MovieCell
         
-        
         let movie = movies[indexPath.row]
         let posterURL = URL(string: baseURL + movie.poster)
         
         cell.titleLabel.text = "\(movie.title)"
         cell.overviewLabel.text = "\(movie.overview)"
+        
+        if let validURL = posterURL {
+            cell.posterView.setImageWith(validURL)
+        }
+        
+        return cell
+    }
+    
+    // MARK: CollectionView data source
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        
+        return movies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "com.codepath.MovieGridCell", for: indexPath) as! MovieGridCell
+        
+        let movie = movies[indexPath.row]
+        let posterURL = URL(string: baseURL + movie.poster)
+        
+        cell.titleLabel.text = "\(movie.title)"
         
         if let validURL = posterURL {
             cell.posterView.setImageWith(validURL)
