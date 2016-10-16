@@ -24,6 +24,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     let baseURL = "https://image.tmdb.org/t/p/w500"
     var endPoint = String()
     
+    let segmentControl = UISegmentedControl()
+    var segmentBarItem: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +40,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         // init refresh control
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
+        
+        // init segment control for list/grid view
+        segmentControl.frame = CGRect(x: 0, y: 0, width: 90, height: 30.0)
+        segmentControl.insertSegment(with: UIImage(named: "list"), at: 0, animated: true)
+        segmentControl.insertSegment(with: UIImage(named: "grid"), at: 1, animated: true)
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.addTarget(self, action: #selector(segmentControlAction(segmentControl:)), for: .valueChanged)
+        segmentBarItem = UIBarButtonItem(customView: segmentControl)
+        self.navigationItem.rightBarButtonItem = segmentBarItem
+    }
+    
+    // Mark: Segment Control
+    func segmentControlAction(segmentControl: UISegmentedControl) {
+        NSLog("selected segment: \(segmentControl.selectedSegmentIndex)")
     }
     
     // Mark: Refresh control
