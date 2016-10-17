@@ -11,7 +11,7 @@ import SwiftyJSON
 import AFNetworking
 import KVNProgress
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate, UICollectionViewDataSource {
+class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -28,6 +28,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     let segmentControl = UISegmentedControl()
     var segmentBarItem: UIBarButtonItem!
     
+    let moviesPerRow: CGFloat = 3
+    let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,10 +178,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     // MARK: CollectionView data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        
         return movies.count
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "com.codepath.MovieGridCell", for: indexPath) as! MovieGridCell
@@ -194,6 +195,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let paddingSpace = sectionInsets.left * (moviesPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / moviesPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
     }
     
     // MARK: ScrollView delegate
