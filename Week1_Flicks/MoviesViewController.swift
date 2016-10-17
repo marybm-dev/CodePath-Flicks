@@ -11,7 +11,7 @@ import SwiftyJSON
 import AFNetworking
 import KVNProgress
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var tableView: UITableView!
@@ -183,6 +183,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         return cell
     }
     
+    // Mark: TableView delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        self.performSegue(withIdentifier: "showMovieDetail", sender: cell)
+    }
+    
     // MARK: CollectionView data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
@@ -221,6 +227,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         return sectionInsets.left
     }
     
+    // Mark: CollectionView delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        self.performSegue(withIdentifier: "showMovieDetail", sender: cell)
+    }
+    
     // MARK: ScrollView delegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
@@ -243,13 +255,26 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     // Mark: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        let movie = movies[(indexPath?.row)!]
         
-        let detailViewController = segue.destination as! DetailViewController
-        detailViewController.movie = movie
-        detailViewController.baseURL = self.baseURL
+        if segue.identifier == "showMovieDetail" {
+
+            // extract the indexPath from the proper source (tableView vs. collectionView)
+            var indexPath: IndexPath?
+            if segmentControl.selectedSegmentIndex == 0 {
+                let cell = sender as! UITableViewCell
+                indexPath = tableView.indexPath(for: cell)
+            }
+            else {
+                let cell = sender as! UICollectionViewCell
+                indexPath = collectionView.indexPath(for: cell)
+            }
+            
+            // grab the movie at indexPath and display in DetailView
+            let movie = movies[(indexPath?.row)!]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+            detailViewController.baseURL = self.baseURL
+        }
     }
 
 }

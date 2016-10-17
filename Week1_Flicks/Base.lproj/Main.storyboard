@@ -93,7 +93,6 @@
                                             <outlet property="overviewLabel" destination="9fK-Tv-M61" id="biQ-BH-Tyo"/>
                                             <outlet property="posterView" destination="S6B-jy-EgA" id="AtB-91-OKi"/>
                                             <outlet property="titleLabel" destination="jcN-Aa-fMz" id="zIf-MB-OaV"/>
-                                            <segue destination="4If-0M-x7V" kind="push" id="3lL-1p-0MN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -128,6 +127,7 @@
                         <outlet property="collectionView" destination="DFJ-VF-EcB" id="Dip-dq-kxN"/>
                         <outlet property="tableView" destination="2kX-18-ee6" id="lL4-Jy-VBL"/>
                         <outlet property="warningView" destination="uhd-Hg-3mL" id="Eq0-f3-xQv"/>
+                        <segue destination="4If-0M-x7V" kind="push" identifier="showMovieDetail" id="yoS-Fx-r81"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
