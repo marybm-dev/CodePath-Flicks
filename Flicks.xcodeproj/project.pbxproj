@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E30D3A91DB038870092AA5F /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E30D3A81DB038870092AA5F /* AFNetworking.framework */; };
 		5E30D3AB1DB0388B0092AA5F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E30D3AA1DB0388B0092AA5F /* SwiftyJSON.framework */; };
 		5E4C9EB51DB5650B0086B302 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C9EA81DB5650B0086B302 /* AppDelegate.swift */; };
 		5E4C9EB61DB5650B0086B302 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C9EA91DB5650B0086B302 /* Assets.xcassets */; };
@@ -21,7 +20,8 @@
 		5E4C9EBE1DB5650B0086B302 /* MovieGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C9EB31DB5650B0086B302 /* MovieGridCell.swift */; };
 		5E4C9EBF1DB5650B0086B302 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C9EB41DB5650B0086B302 /* MoviesViewController.swift */; };
 		5E4C9EC11DB565310086B302 /* KVNProgress.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4C9EC01DB565310086B302 /* KVNProgress.framework */; };
-		C59724E97AABCE08E7BE7F21 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16CC4F927015F320B7BCFF /* Pods_Flicks.framework */; };
+		5E4C9EC31DB567140086B302 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4C9EC21DB567140086B302 /* AFNetworking.framework */; };
+		5E4C9EC51DB5671B0086B302 /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4C9EC41DB5671B0086B302 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +45,8 @@
 		5E4C9EB31DB5650B0086B302 /* MovieGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieGridCell.swift; sourceTree = "<group>"; };
 		5E4C9EB41DB5650B0086B302 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		5E4C9EC01DB565310086B302 /* KVNProgress.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KVNProgress.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Flicks-dmnpaptdbesbhnddxmdnqsoziocu/Build/Products/Debug-iphonesimulator/KVNProgress/KVNProgress.framework"; sourceTree = "<group>"; };
+		5E4C9EC21DB567140086B302 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Flicks-dmnpaptdbesbhnddxmdnqsoziocu/Build/Products/Debug-iphonesimulator/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		5E4C9EC41DB5671B0086B302 /* Pods_Flicks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Flicks.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Flicks-dmnpaptdbesbhnddxmdnqsoziocu/Build/Products/Debug-iphonesimulator/Pods_Flicks.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +54,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E4C9EC51DB5671B0086B302 /* Pods_Flicks.framework in Frameworks */,
+				5E4C9EC31DB567140086B302 /* AFNetworking.framework in Frameworks */,
 				5E4C9EC11DB565310086B302 /* KVNProgress.framework in Frameworks */,
 				5E30D3AB1DB0388B0092AA5F /* SwiftyJSON.framework in Frameworks */,
-				5E30D3A91DB038870092AA5F /* AFNetworking.framework in Frameworks */,
-				C59724E97AABCE08E7BE7F21 /* Pods_Flicks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +112,8 @@
 		8A4FE10BF7B9D534D54F4541 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E4C9EC41DB5671B0086B302 /* Pods_Flicks.framework */,
+				5E4C9EC21DB567140086B302 /* AFNetworking.framework */,
 				5E4C9EC01DB565310086B302 /* KVNProgress.framework */,
 				5E30D3B41DB2B4950092AA5F /* KVNProgress.framework */,
 				5E30D3B21DB2AE520092AA5F /* ARSLineProgress.framework */,
