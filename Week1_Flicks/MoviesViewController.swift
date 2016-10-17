@@ -161,6 +161,30 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    
+    func animateUIView(validURL: URL, posterView: UIImageView) {
+        let imageRequest = URLRequest(url: validURL)
+        
+        posterView.setImageWith(
+            imageRequest,
+            placeholderImage: nil,
+            success: { (imageRequest, imageResponse, image) -> Void in
+                
+                // imageResponse will be nil if the image is cached
+                if imageResponse != nil {
+                    posterView.alpha = 0.0
+                    posterView.image = image
+                    UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                        posterView.alpha = 1.0
+                    })
+                } else {
+                    posterView.image = image
+                }
+            },
+            failure: { (imageRequest, imageResponse, error) -> Void in
+                // do something for the failure condition
+        })
+    }
 
     // Mark: TableView data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -176,8 +200,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = "\(movie.title)"
         cell.overviewLabel.text = "\(movie.overview)"
         
+        // fade in image
         if let validURL = posterURL {
-            cell.posterView.setImageWith(validURL)
+            self.animateUIView(validURL: validURL, posterView: cell.posterView)
         }
         
         // add style to cell
@@ -223,7 +248,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = "\(movie.title)"
         
         if let validURL = posterURL {
-            cell.posterView.setImageWith(validURL)
+            self.animateUIView(validURL: validURL, posterView: cell.posterView)
         }
         
         // add style to cell
