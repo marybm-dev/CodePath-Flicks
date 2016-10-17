@@ -29,7 +29,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     var segmentBarItem: UIBarButtonItem!
     
     let moviesPerRow: CGFloat = 3
-    let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,7 +201,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / moviesPerRow
         
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        return CGSize(width: widthPerItem, height: 178.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
