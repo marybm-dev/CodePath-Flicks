@@ -13,8 +13,8 @@ import KVNProgress
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var warningView: UIView!
     
     var movies = [Movie]()
@@ -59,8 +59,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     // Mark: Segment Control
     func segmentControlAction(segmentControl: UISegmentedControl) {
-        NSLog("selected segment: \(segmentControl.selectedSegmentIndex)")
-        
         var toView = UIView()
         var fromView = UIView()
         

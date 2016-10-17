@@ -95,16 +95,16 @@
 			isa = PBXGroup;
 			children = (
 				5E4C9EA81DB5650B0086B302 /* AppDelegate.swift */,
-				5E4C9EA91DB5650B0086B302 /* Assets.xcassets */,
-				5E4C9EAA1DB5650B0086B302 /* LaunchScreen.storyboard */,
-				5E4C9EAC1DB5650B0086B302 /* Main.storyboard */,
-				5E4C9EAE1DB5650B0086B302 /* DetailViewController.swift */,
-				5E4C9EAF1DB5650B0086B302 /* IJReachability.swift */,
-				5E4C9EB01DB5650B0086B302 /* Info.plist */,
 				5E4C9EB11DB5650B0086B302 /* Movie.swift */,
 				5E4C9EB21DB5650B0086B302 /* MovieCell.swift */,
 				5E4C9EB31DB5650B0086B302 /* MovieGridCell.swift */,
 				5E4C9EB41DB5650B0086B302 /* MoviesViewController.swift */,
+				5E4C9EAE1DB5650B0086B302 /* DetailViewController.swift */,
+				5E4C9EAF1DB5650B0086B302 /* IJReachability.swift */,
+				5E4C9EA91DB5650B0086B302 /* Assets.xcassets */,
+				5E4C9EAA1DB5650B0086B302 /* LaunchScreen.storyboard */,
+				5E4C9EAC1DB5650B0086B302 /* Main.storyboard */,
+				5E4C9EB01DB5650B0086B302 /* Info.plist */,
 			);
 			path = Week1_Flicks;
 			sourceTree = "<group>";
