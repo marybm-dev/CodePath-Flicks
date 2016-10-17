@@ -31,6 +31,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     let moviesPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
     
+    var currentPage = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +43,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         //self.view.willRemoveSubview(collectionView)
         
         // get the data
-        self.fetchData(shouldRefresh: false, offset: 0)
+        self.fetchData(shouldRefresh: false, page: currentPage)
         
         // init refresh control
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -77,13 +79,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     // Mark: Refresh control
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        self.fetchData(shouldRefresh: true, offset: movies.count)
+        self.fetchData(shouldRefresh: true, page: 1)
     }
     
     // Mark: App logic
-    func fetchData(shouldRefresh: Bool, offset: Int) {
+    func fetchData(shouldRefresh: Bool, page: Int) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)&offset=\(offset)")
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)&page=\(page)")
         
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -102,6 +104,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
             
         });
         task.resume()
+        
+        currentPage += 1
     }
     
     func parseData(response: Data?, shouldRefresh: Bool) {
@@ -227,7 +231,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
                 isMoreDataLoading = true
                 
                 // ... Code to load more results ...
-                self.fetchData(shouldRefresh: false, offset: movies.count)
+                self.fetchData(shouldRefresh: false, page: currentPage)
             }
         }
     }
