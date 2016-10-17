@@ -39,6 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
         
+        // add styles to nav and tab bars
+        let navBar = UINavigationBar.appearance()
+        navBar.tintColor = UIColor.movieDbGreen()       // bar button items
+        navBar.barStyle = UIBarStyle.black              // bar style
+        
+        let tabBar = UITabBar.appearance()
+        tabBar.tintColor = UIColor.movieDbGreen()       // bar button items
+        tabBar.barStyle = UIBarStyle.black              // bar style
+        
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         

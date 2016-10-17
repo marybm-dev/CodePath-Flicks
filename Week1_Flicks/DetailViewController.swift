@@ -36,5 +36,8 @@ class DetailViewController: UIViewController {
         if let validURL = posterURL {
             posterView.setImageWith(validURL)
         }
+        
+        // add style
+        titleLabel.textColor = UIColor.movieDbGreen()
     }
 }

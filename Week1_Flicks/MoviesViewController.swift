@@ -180,6 +180,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             cell.posterView.setImageWith(validURL)
         }
         
+        // add style to cell
+        cell.backgroundColor = UIColor.appleLightestGray()
+        cell.titleLabel.textColor = UIColor.movieDbGreen()
+        
         return cell
     }
     
@@ -206,6 +210,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if let validURL = posterURL {
             cell.posterView.setImageWith(validURL)
         }
+        
+        // add style to cell
+        cell.backgroundColor = UIColor.appleLightestGray()
         
         return cell
     }
