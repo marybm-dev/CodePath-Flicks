@@ -247,6 +247,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.titleLabel.text = "\(movie.title)"
         
+        // fade in image
         if let validURL = posterURL {
             self.animateUIView(validURL: validURL, posterView: cell.posterView)
         }
