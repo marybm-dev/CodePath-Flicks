@@ -190,7 +190,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Mark: TableView delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
+        
+        // add style to selected
+        cell?.contentView.backgroundColor = UIColor.movieDbGreen()
+        let movieCell = cell as! MovieCell
+        movieCell.titleLabel.textColor = UIColor.white
+        
         self.performSegue(withIdentifier: "showMovieDetail", sender: cell)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        // revert style
+        cell?.contentView.backgroundColor = UIColor.appleLightestGray()
+        let movieCell = cell as! MovieCell
+        movieCell.titleLabel.textColor = UIColor.movieDbGreen()
     }
     
     // MARK: CollectionView data source
@@ -237,7 +252,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Mark: CollectionView delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
+        
+        // add style to selected
+        cell?.contentView.backgroundColor = UIColor.movieDbGreen()
+        
         self.performSegue(withIdentifier: "showMovieDetail", sender: cell)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        // revert style
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.appleLightestGray()
     }
     
     // MARK: ScrollView delegate
