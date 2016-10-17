@@ -34,10 +34,47 @@ class DetailViewController: UIViewController {
         // set the image
         let posterURL = URL(string: baseURL + movie.poster)
         if let validURL = posterURL {
-            posterView.setImageWith(validURL)
+            self.animateUIView(validURL: validURL, posterView: posterView)
         }
         
         // add style
         titleLabel.textColor = UIColor.movieDbGreen()
+    }
+    
+    func animateUIView(validURL: URL, posterView: UIImageView) {
+        let smallImageRequest = NSURLRequest(url: validURL)
+        let largeImageRequest = NSURLRequest(url: validURL)
+        
+        posterView.setImageWith(
+            smallImageRequest as URLRequest,
+            placeholderImage: nil,
+            success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                
+                // smallImageResponse will be nil if the smallImage is already available
+                // in cache (might want to do something smarter in that case).
+                posterView.alpha = 0.0
+                posterView.image = smallImage;
+                
+                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                    posterView.alpha = 1.0
+                    }, completion: { (sucess) -> Void in
+                        // The AFNetworking ImageView Category only allows one request to be sent at a time
+                        // per ImageView. This code must be in the completion block.
+                        posterView.setImageWith(
+                            largeImageRequest as URLRequest,
+                            placeholderImage: smallImage,
+                            success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                posterView.image = largeImage;
+                            },
+                            failure: { (request, response, error) -> Void in
+                                // do something for the failure condition of the large image request
+                                // possibly setting the ImageView's image to a default image
+                        })
+                })
+            },
+            failure: { (request, response, error) -> Void in
+                // do something for the failure condition
+                // possibly try to get the large image
+        })
     }
 }
