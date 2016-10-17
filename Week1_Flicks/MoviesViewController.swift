@@ -43,7 +43,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
         //self.view.willRemoveSubview(collectionView)
         
         // get the data
-        self.fetchData(shouldRefresh: false, page: currentPage)
+        self.fetchData(page: currentPage, shouldRefresh: false, shouldAnimateDelay: true)
         
         // init refresh control
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -79,11 +79,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
     
     // Mark: Refresh control
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        self.fetchData(shouldRefresh: true, page: 1)
+        self.fetchData(page: 1, shouldRefresh: true, shouldAnimateDelay: false)
     }
     
     // Mark: App logic
-    func fetchData(shouldRefresh: Bool, page: Int) {
+    func fetchData(page: Int, shouldRefresh: Bool, shouldAnimateDelay: Bool) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)&page=\(page)")
         
@@ -99,8 +99,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
             // show activity indicator
             KVNProgress.show()
             
-            // parse the response
-            self.parseData(response: dataOrNil, shouldRefresh: shouldRefresh)
+            // add delay to view activity indicator
+            let delay = shouldAnimateDelay ? (DispatchTime.now() + 1) : DispatchTime.now()
+            DispatchQueue.main.asyncAfter(deadline: delay) {
+                
+                // parse the response
+                self.parseData(response: dataOrNil, shouldRefresh: shouldRefresh)
+            }
             
         });
         task.resume()
@@ -231,7 +236,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UIScrollVie
                 isMoreDataLoading = true
                 
                 // ... Code to load more results ...
-                self.fetchData(shouldRefresh: false, page: currentPage)
+                self.fetchData(page: currentPage, shouldRefresh: false, shouldAnimateDelay: true)
             }
         }
     }
