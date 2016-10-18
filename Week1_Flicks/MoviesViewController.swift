@@ -11,7 +11,7 @@ import SwiftyJSON
 import AFNetworking
 import KVNProgress
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MoviesViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var tableView: UITableView!
@@ -36,11 +36,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // check for internet connection
-        warningView.isHidden = IJReachability.isConnectedToNetwork() ? true : false
-
+        // setup view controls
+        self.initControls()
+        
         // get the data
         self.fetchData(page: currentPage, shouldRefresh: false, shouldAnimateDelay: true)
+        
+    }
+    
+    // Mark: App logic
+    func initControls() {
         
         // init refresh control
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
@@ -56,30 +61,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.rightBarButtonItem = segmentBarItem
     }
     
-    // Mark: Segment Control
-    func segmentControlAction(segmentControl: UISegmentedControl) {
-        var toView = UIView()
-        var fromView = UIView()
-        
-        if segmentControl.selectedSegmentIndex == 0 {
-            fromView = self.collectionView
-            toView = self.tableView
-        }
-        else {
-            fromView = self.tableView
-            toView = self.collectionView
-        }
-        
-        toView.frame = self.view.bounds
-        UIView.transition(from: fromView, to: toView, duration: 0.25, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
-    }
-    
-    // Mark: Refresh control
-    func refreshControlAction(refreshControl: UIRefreshControl) {
-        self.fetchData(page: 1, shouldRefresh: true, shouldAnimateDelay: false)
-    }
-    
-    // Mark: App logic
     func fetchData(page: Int, shouldRefresh: Bool, shouldAnimateDelay: Bool) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(endPoint)?api_key=\(apiKey)&page=\(page)")
@@ -90,6 +71,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate:nil,
             delegateQueue:OperationQueue.main
         )
+        
+        // check for internet connection
+        warningView.isHidden = IJReachability.isConnectedToNetwork() ? true : false
         
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: { (dataOrNil, response, error) in
             
@@ -182,130 +166,28 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 // do something for the failure condition
         })
     }
-
-    // Mark: TableView data source
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+    
+    // Mark: Refresh control
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        self.fetchData(page: 1, shouldRefresh: true, shouldAnimateDelay: false)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.MovieCell", for: indexPath) as! MovieCell
+    // Mark: Segment Control
+    func segmentControlAction(segmentControl: UISegmentedControl) {
+        var toView = UIView()
+        var fromView = UIView()
         
-        let movie = movies[indexPath.row]
-        let posterURL = URL(string: baseURL + movie.poster)
-        
-        cell.titleLabel.text = "\(movie.title)"
-        cell.overviewLabel.text = "\(movie.overview)"
-        
-        // fade in image
-        if let validURL = posterURL {
-            self.animateUIView(validURL: validURL, posterView: cell.posterView)
+        if segmentControl.selectedSegmentIndex == 0 {
+            fromView = self.collectionView
+            toView = self.tableView
+        }
+        else {
+            fromView = self.tableView
+            toView = self.collectionView
         }
         
-        // add style to cell
-        cell.backgroundColor = UIColor.appleLightestGray()
-        cell.titleLabel.textColor = UIColor.movieDbGreen()
-        
-        return cell
-    }
-    
-    // Mark: TableView delegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        
-        // add style to selected
-        cell?.contentView.backgroundColor = UIColor.movieDbGreen()
-        let movieCell = cell as! MovieCell
-        movieCell.titleLabel.textColor = UIColor.white
-        
-        self.performSegue(withIdentifier: "showMovieDetail", sender: cell)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        
-        // revert style
-        cell?.contentView.backgroundColor = UIColor.appleLightestGray()
-        let movieCell = cell as! MovieCell
-        movieCell.titleLabel.textColor = UIColor.movieDbGreen()
-    }
-    
-    // MARK: CollectionView data source
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
-    }
-
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "com.codepath.MovieGridCell", for: indexPath) as! MovieGridCell
-        
-        let movie = movies[indexPath.row]
-        let posterURL = URL(string: baseURL + movie.poster)
-        
-        cell.titleLabel.text = "\(movie.title)"
-        
-        // fade in image
-        if let validURL = posterURL {
-            self.animateUIView(validURL: validURL, posterView: cell.posterView)
-        }
-        
-        // add style to cell
-        cell.backgroundColor = UIColor.appleLightestGray()
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let paddingSpace = sectionInsets.left * (moviesPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / moviesPerRow
-        
-        return CGSize(width: widthPerItem, height: 178.0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-    }
-    
-    // Mark: CollectionView delegate
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        
-        // add style to selected
-        cell?.contentView.backgroundColor = UIColor.movieDbGreen()
-        
-        self.performSegue(withIdentifier: "showMovieDetail", sender: cell)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        // revert style
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.contentView.backgroundColor = UIColor.appleLightestGray()
-    }
-    
-    // MARK: ScrollView delegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let currentView = (segmentControl.selectedSegmentIndex == 0) ? tableView : collectionView
-        
-        if !isMoreDataLoading {
-            // Calculate the position of one screen length before the bottom of the results
-            let scrollViewContentHeight = currentView.contentSize.height
-            let scrollOffsetThreshold = scrollViewContentHeight - currentView.bounds.size.height
-            
-            // When the user has scrolled past the threshold, start requesting
-            if(scrollView.contentOffset.y > scrollOffsetThreshold && currentView.isDragging) {
-                isMoreDataLoading = true
-                
-                // ... Code to load more results ...
-                self.fetchData(page: currentPage, shouldRefresh: false, shouldAnimateDelay: true)
-            }
-        }
+        toView.frame = self.view.bounds
+        UIView.transition(from: fromView, to: toView, duration: 0.25, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
     }
     
     // Mark: Segue
