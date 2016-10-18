@@ -38,10 +38,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         // check for internet connection
         warningView.isHidden = IJReachability.isConnectedToNetwork() ? true : false
-        
-        // default view is tableView so remove collectionView
-        //self.view.willRemoveSubview(collectionView)
-        
+
         // get the data
         self.fetchData(page: currentPage, shouldRefresh: false, shouldAnimateDelay: true)
         
