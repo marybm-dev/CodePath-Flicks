@@ -2,7 +2,7 @@
 
 This is an iOS application leveraging the Fl API to display images for specified blog (Humans of New York in this particular app).
 
-###Time spent: 13 hours
+###Time spent: 14 hours
 
 ###Completed required user stories:
 * [x] Now Playing movies in ListView with overview and poster image.
@@ -26,5 +26,6 @@ In addition I have added the following:
 * Infinite scrolling to fetch next page(s) : this demonstrates use of the API's *page* parameter.
 * Custom tab bar
 * Added extension for UIColor to use hex
+* Added extensions to group common logic (e.g. tableView, collectionView, data sources/delegates, etc.)
 
 ![Video Walkthrough](Flicks.gif)
