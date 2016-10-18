@@ -26,3 +26,5 @@ In addition I have added the following:
 * Infinite scrolling to fetch next page(s) : this demonstrates use of the API's *page* parameter.
 * Custom tab bar
 * Added extension for UIColor to use hex
+
+![Video Walkthrough](Flicks.gif)
